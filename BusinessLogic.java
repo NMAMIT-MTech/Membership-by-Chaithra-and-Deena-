@@ -20,7 +20,7 @@ public boolean insertMemberData(Member objMember) throws SQLException{
 
 
 public boolean insertMemberDetailsData(MemberDetails objMember) throws SQLException{
-		
+		// calculating expiry date after getting startDate
 		Date d=objMember.getStartDate();
 		objMember.setExpiryDate(new Date(d.getDate(),d.getMonth(),d.getYear()+1));
 		
