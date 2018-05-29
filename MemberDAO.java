@@ -1,5 +1,4 @@
 package DAO;
-
 import BL.Constants;
 import Beans.Member;
 import java.sql.Connection;
@@ -9,9 +8,9 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
-
 public class MemberDAO {
-    public boolean insertintoMember(Member objMem) throws SQLException{
+    
+public boolean insertintoMember(Member objMem) throws SQLException{
 
 boolean success=false;
 Connection con=null;
@@ -23,7 +22,7 @@ con=DriverManager.getConnection(Constants.URL,Constants.UserName,Constants.Pass)
 
 stm= con.createStatement();
 
-String sql="Insert into Member values("+objMem.getName()+","+objMem.getMemberType()+","+objMem.getContactNumber()+","+objMem.getEmail()+","+objMem.getAddress()+","+objMem.getAadhar()+")";
+String sql="Insert into Member values("+objMem.getName()+","+objMem.getMemberType()+","+objMem.getContactNumber()+","+objMem.getEmail()+","+objMem.getAddress()+","+objMem.getStartDate()+","+objMem.getExpiryDate()+","+objMem.getAadhar()+")";
 
 success=stm.execute(sql);
 }catch(Exception e){
@@ -32,11 +31,12 @@ success=stm.execute(sql);
 	stm.close();
 	con.close();
 }
-
 return success;    
 }
 
-public List<Member> getMemberDetails(String MemIDs) throws SQLException{
+
+	
+public List<Member> getMemberDetails() throws SQLException{
 Connection con=null;
 Statement stm=null;
 List<Member> lstMem= new ArrayList<Member>();
@@ -47,7 +47,7 @@ con=DriverManager.getConnection(Constants.URL,Constants.UserName,Constants.Pass)
 
 stm= con.createStatement();
 
-String sql="Select * from Member where MemberID in("+MemIDs+")";
+String sql="Select * from Member";
 
 ResultSet rs=stm.executeQuery(sql);
 
@@ -59,6 +59,8 @@ while(rs.next()){
 	objMem.setEmail(rs.getString("Email"));
 	objMem.setAadhar(rs.getLong("Aadhar"));
 	objMem.setMemberID(rs.getInt("MemberID"));
+        objMem.setStartDate(rs.getDate("startDate"));
+        objMem.setExpiryDate(rs.getDate("expiryDate"));
 lstMem.add(objMem);
 }
 }catch(Exception e){
@@ -71,7 +73,4 @@ lstMem.add(objMem);
 return lstMem;
 }
 }
-
-
-
 
