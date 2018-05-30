@@ -1,16 +1,25 @@
 package Beans;
 
+import java.math.BigInteger;
 import java.sql.Date;
 
 public class Member {
     
 String name,email,address,memberType;
-long aadhar;
-long contactNumber;
+    BigInteger aadhar;
+BigInteger contactNumber;
 int memberID;
 Date startDate,expiryDate;
-	
-	
+        
+        public String getMemberType() {
+        return memberType;
+        }
+
+        public void setMemberType(String memberType) {
+        this.memberType = memberType;
+        }
+
+        
 	public void setMemberID(int memberID){
 		this.memberID=memberID;
 	}
@@ -18,26 +27,14 @@ Date startDate,expiryDate;
 	public int getMemberID(){
 		return this.memberID;
 	}
-	
         
-	public String getMemberType() {
-        return memberType;
-        }
-
-        public void setMemberType(String memberType) {
-        this.memberType = memberType;
-        }
-        
-	
-	public void setContactNumber(long contactNumber){
+	public void setContactNumber(BigInteger contactNumber){
 		this.contactNumber=contactNumber;
 	}
 
-	public long getContactNumber(){
+	public BigInteger getContactNumber(){
 		return this.contactNumber;
 	}
-	
-	
 	public void setName(String name){
 		this.name=name;
 	}
@@ -46,7 +43,6 @@ Date startDate,expiryDate;
 		return this.name;
 	}
 
-	
 	public void setEmail(String email){
 		this.email=email;
 	}
@@ -55,8 +51,7 @@ Date startDate,expiryDate;
 		return this.email;
 	}
 
-        
-	public void setAddress(String address){
+        public void setAddress(String address){
 		this.address=address;
 	}
 
@@ -64,12 +59,11 @@ Date startDate,expiryDate;
 		return this.address;
 	}
 
-	
-	public void setAadhar(long aadhar){
+	public void setAadhar(BigInteger aadhar){
 		this.aadhar=aadhar;
 	}
 
-	public long getAadhar(){
+	public BigInteger getAadhar(){
 		return this.aadhar;
 	}
         
@@ -81,9 +75,7 @@ Date startDate,expiryDate;
 	public Date getStartDate(){
 		return this.startDate;
 	}
-        
-	
-	public void setExpiryDate(Date expiryDate){
+        public void setExpiryDate(Date expiryDate){
 		this.expiryDate=expiryDate;
 	}
 
