@@ -6,25 +6,31 @@ import java.sql.SQLException;
 import java.util.List;
 public class BusinessLogic {
     
-	public boolean insertMemberData(Member objMember) throws SQLException{
-		
+public boolean insertMemberData(Member objMember) throws SQLException{
 		//calculating expiry date
 		Date d=objMember.getStartDate();
-		objMember.setExpiryDate(new Date(d.getDate(),d.getMonth(),d.getYear()+1));
+                
+                objMember.setStartDate(new Date((d.getYear())-1900,(d.getMonth())-1,d.getDate()));
+		objMember.setExpiryDate(new Date((d.getYear()+1)-1900,(d.getMonth())-1,d.getDate()));
                
-		MemberDAO objMem=new MemberDAO();
-
+                MemberDAO objMem=new MemberDAO();
 		boolean success=objMem.insertintoMember(objMember);
                 return success;
 	}
 
-
-	public List<Member> getMemberData() throws SQLException{
+public List<Member> getMemberData() throws SQLException{
 		
 		MemberDAO objMem=new MemberDAO();
 
-		List<Member> lstDet=objMem.getMemberDetails();
-
+		List<Member> lstDet=objMem.getMemberDetails(); 
 		return lstDet;
+	}
+
+
+public boolean deleteMemberData(int MemId) throws SQLException{
+		
+                MemberDAO objMem=new MemberDAO();
+		boolean success=objMem.deletefromMember(MemId);
+                return success;
 	}
 }
